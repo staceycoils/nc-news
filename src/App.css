@@ -4,9 +4,9 @@ body {
   font-size: 100%;
 }
 
-/* .App { */
-  /* background-color: silver; */
-/* } */
+.App {
+  text-align: center;
+}
 
 .header {
   text-align: center;

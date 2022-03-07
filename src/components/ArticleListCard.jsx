@@ -12,7 +12,7 @@ export default function ArticleListCard(props) {
   return (
     <div className='ArticleList'>
         <h4>{title}<br /></h4>
-        <p className='ArticleListGrid'>
+        <span className='ArticleListGrid'>
             <p className='lhs'>
             Submitted By {author}<br />
             Topic: {topic}<br />
@@ -22,7 +22,7 @@ export default function ArticleListCard(props) {
             Votes: {votes}<br />
             Comments: {comment_count}<br />
             </p>
-        </p>
+        </span>
     </div>
   )
 }
