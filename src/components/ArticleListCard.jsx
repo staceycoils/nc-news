@@ -1,7 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function ArticleListCard(props) {
     const {
+        article_id,
         title,
         author,
         topic,
@@ -11,7 +13,11 @@ export default function ArticleListCard(props) {
     } = props.card
   return (
     <div className='ArticleList'>
-        <h4>{title}<br /></h4>
+        <h4>
+          <Link to={`/articles/${article_id}`} >
+          {title}
+          </Link>
+        </h4>
         <span className='ArticleListGrid'>
             <p className='lhs'>
             Submitted By {author}<br />
