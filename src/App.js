@@ -1,10 +1,9 @@
 import './App.css';
-import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header'
 import Home from './components/Home';
 import Articles from './components/Articles';
-// import { Articles, Home } from './components';
+import {Topics} from './components/Topics';
 
 function App() {
   return (
@@ -14,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/articles" element={<Articles />} />
+          <Route path="/topics" element={<Topics />} />
         </Routes>
       </div>
     </BrowserRouter>
