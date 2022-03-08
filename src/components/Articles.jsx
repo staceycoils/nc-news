@@ -17,7 +17,7 @@ export default function Articles(props) {
     
   if (isLoading) return <p>loading</p>
   return (
-    <div className='Articles'>
+    <main className='Articles'>
         <ul>
             {articles.map(article=>{
                 return (
@@ -27,6 +27,6 @@ export default function Articles(props) {
                 )
             })}    
         </ul> 
-    </div>
+    </main>
   )
 }
