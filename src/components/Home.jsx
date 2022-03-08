@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Home() {
@@ -6,7 +5,8 @@ export default function Home() {
   return (
     <div>
         Home<br />
-        <Link to="/articles" >Articles</Link>
+        <Link to="/articles" >Articles</Link><br />
+        <Link to="/topics" >Topics</Link><br />
     </div>
   )
 }

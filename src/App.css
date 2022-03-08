@@ -4,6 +4,14 @@ body {
   font-size: 100%;
 }
 
+#TopicSelect {
+  justify-content: left;
+  margin-top: 1%;
+  margin-right: 90%;
+  width: 10%;
+  min-width: 7rem;
+}
+
 .App {
   text-align: center;
 }
@@ -13,10 +21,6 @@ body {
   /* background-color: aqua; */
   border-bottom: 3px solid black;
 }
-
-/* h1 { */
-  /* font-size: 500%; */
-/* } */
 
 .Articles{
   /* background-color: rgb(159, 255, 159); */
@@ -54,4 +58,9 @@ ul {
   margin: 0%;
   margin-bottom: 2%;
 }
+
+h3 {
+  text-transform: capitalize;
+}
+
 
