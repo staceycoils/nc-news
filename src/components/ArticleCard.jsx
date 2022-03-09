@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { sendApi, fetchApi } from "../api";
+import { Link } from "react-router-dom";
 
 export default function ArticleCard(props) {
     const { articleRequest } = props
@@ -34,7 +35,7 @@ export default function ArticleCard(props) {
             <h3>{article.title}</h3>
             <span className='ArticleListGrid'>
                 <p className='lhs'>By {article.author} <br />On {article.created_at.slice(0,10)}</p>
-                <p className='rhs'>In {article.topic}</p>
+                <p className='rhs'>In <Link to={`/articles?topic=${article.topic}`}>{article.topic}</Link></p>
             </span>
                 <p className='ArticleBody'>{article.body}</p>
             <span className='ArticleListGrid'>
