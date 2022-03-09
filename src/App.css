@@ -12,6 +12,15 @@ body {
   min-width: 7rem;
 }
 
+.ButtonBack {
+  justify-content: left;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-right: 90%;
+  width: 5%;
+  min-width: 7rem;
+}
+
 .App {
   text-align: center;
 }
@@ -63,4 +72,32 @@ h3 {
   text-transform: capitalize;
 }
 
+.ArticlePage {
+  background-color: pink;
+  border: 3px solid black;
+  padding-left: 1%;
+  padding-right: 1%;
+}
 
+#ArticlePage__SubHead {
+  padding-left: 1%;
+  text-align: left;
+  width: 50%;
+}
+
+#ArticlePage__RhSubHead {
+  justify-content: right;
+  text-align: right;
+  padding-right: 1%;
+  text-transform: capitalize;
+  width: 50%;
+}
+
+.ArticleBody {
+  background-color: white;
+  border: 2px solid black;
+  margin-right: 1%;
+  margin-left: 1%;
+  padding: 1rem;
+  text-align: justify;
+}
