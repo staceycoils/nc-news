@@ -18,3 +18,11 @@ export function fetchApi(extension) {
         })
 
 }
+
+export function sendApi(extension, info) {
+  return axios({
+    method: 'patch',
+    url: `https://nc-news-se.herokuapp.com/api/${extension}`,
+    data: info
+  })
+}

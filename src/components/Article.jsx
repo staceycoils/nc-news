@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { fetchApi } from '../api';
+import { fetchApi, sendApi } from '../api';
 
 export default function Article() {
     const [article, setArticle] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isVoteLoading, setIsVoteLoading] = useState(false);
     const articleRequest = useParams().article_id;
     const navigate = useNavigate();
 
@@ -19,6 +20,19 @@ export default function Article() {
     function returnToParent(e) {
         e.preventDefault();
         navigate(-1)
+    }
+
+    function giveVote(num) {
+        const voteChange = { incVotes: num };
+        setIsVoteLoading(true)
+        sendApi(`articles/${articleRequest}`, voteChange)
+            .then(()=>{
+                return fetchApi(`articles/${articleRequest}`)
+            })
+            .then((newApiArticle)=>{
+                setArticle(newApiArticle.article);
+                setIsVoteLoading(false)
+            })
     }
 
     if (isLoading) return <p>Loading.....</p>
@@ -37,7 +51,19 @@ export default function Article() {
             </span>
                 <p className='ArticleBody'>{article.body}</p>
             <span className='ArticleListGrid'>
-                <p className='lhs'>Votes: {article.votes}</p>
+                <p className='lhs'>
+                    Votes: {article.votes}
+                    <button 
+                        onClick={(event) => giveVote(1)}
+                        className='voteButton'
+                        disabled={isVoteLoading}
+                        >^</button>
+                    <button 
+                        onClick={(event) => giveVote(-1)}
+                        className='voteButton'
+                        disabled={isVoteLoading}
+                        >v</button>
+                </p>
                 <p className='rhs'>Comments({article.comment_count})</p>
             </span>
         </div>
