@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { fetchApi } from '../api';
 import HiddenComment from './HiddenComment';
+import { Link } from 'react-router-dom';
 
 export default function CommentCard(props) {
     const [comments, setComments] = useState([]);
@@ -17,6 +18,9 @@ export default function CommentCard(props) {
 
   return ( 
     <div className='ArticlePage'>
+    <Link to={`/articles/${articleRequest}/submit`}>
+        <button>Add Comment</button>
+    </Link>
         {comments.map((comment)=>{
             (comment.votes >= 0) ? comment.hide = false : comment.hide = true
             return (

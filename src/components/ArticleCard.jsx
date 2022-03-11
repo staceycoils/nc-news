@@ -19,7 +19,7 @@ export default function ArticleCard(props) {
     function giveVote(num) {
         const voteChange = { incVotes: num };
         setIsVoteLoading(true)
-        sendApi(`articles/${articleRequest}`, voteChange)
+        sendApi('patch',`articles/${articleRequest}`, voteChange)
             .then(()=>{
                 return fetchApi(`articles/${articleRequest}`)
             })
