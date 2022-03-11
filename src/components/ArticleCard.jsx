@@ -17,15 +17,21 @@ export default function ArticleCard(props) {
     }, []);
 
     function giveVote(num) {
+        article.votes += num
         const voteChange = { incVotes: num };
         setIsVoteLoading(true)
-        sendApi(`articles/${articleRequest}`, voteChange)
+        sendApi('patch',`articles/${articleRequest}`, voteChange)
             .then(()=>{
                 return fetchApi(`articles/${articleRequest}`)
             })
             .then((newApiArticle)=>{
                 setArticle(newApiArticle.article);
                 setIsVoteLoading(false)
+            })
+            .catch((err)=>{
+                article.votes -= num
+                setIsVoteLoading(false)
+                alert(`${err}, please try again`)
             })
     }
 

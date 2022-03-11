@@ -19,10 +19,13 @@ export function fetchApi(extension) {
 
 }
 
-export function sendApi(extension, info) {
+export function sendApi(method, extension, info) {
   return axios({
-    method: 'patch',
+    method: method,
     url: `https://nc-news-se.herokuapp.com/api/${extension}`,
     data: info
+  })
+  .then((response)=>{
+    return response.data
   })
 }
