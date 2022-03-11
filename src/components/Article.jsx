@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import ArticleCard from './ArticleCard';
+import CommentCard from './CommentCard';
 
 export default function Article() {
     const articleRequest = useParams().article_id;
@@ -18,9 +19,7 @@ export default function Article() {
             Back
         </button>
         <ArticleCard articleRequest={articleRequest}/>
-        <div>
-            {/* For comments to go in future */}
-        </div>
+        <CommentCard articleRequest={articleRequest}/>
     </main>
   )
 }
