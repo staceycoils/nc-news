@@ -1,12 +1,21 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { fetchApi } from '../api';
 import HiddenComment from './HiddenComment';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext';
 
 export default function CommentCard(props) {
     const [comments, setComments] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [disabled, setDisabled] = useState(false);
     const {articleRequest} = props 
+    const user = useContext(UserContext)
+
+    useEffect(()=>{
+        if (!user.user) setDisabled(true)
+        else setDisabled(false)
+        console.log("BEEP", user, (!user))
+    }, [user.user])
 
     useEffect(() => {
         fetchApi(`articles/${articleRequest}/comments`)
@@ -19,7 +28,7 @@ export default function CommentCard(props) {
   return ( 
     <div className='ArticlePage'>
     <Link to={`/articles/${articleRequest}/submit`}>
-        <button>Add Comment</button>
+        <button disabled={disabled}>Add Comment</button>
     </Link>
         {comments.map((comment)=>{
             (comment.votes >= 0) ? comment.hide = false : comment.hide = true

@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { fetchApi, sendApi } from '../api';
 import { useParams } from 'react-router-dom';
 import SubmitSuccess from './SubmitSuccess';
+import { UserContext } from '../contexts/UserContext';
 
 export default function CommentSubmit() {
     const [body, setBody] = useState("");
@@ -11,6 +12,7 @@ export default function CommentSubmit() {
     const [newComment, setNewComment] = useState("");
     const [title, setTitle] = useState("");
     const {article_id} = useParams()
+    const user = useContext(UserContext)
 
     useEffect(() => {
         fetchApi(`articles/${article_id}`)
@@ -21,13 +23,13 @@ export default function CommentSubmit() {
 
     function submitComment() {
         if (body === "Enter comment here" || (!body) ) {
-            setError("Please submit a full comment")
+            setError("Please eneter a comment")
         } else {
             setError("")
             setIsSending("Sending.....")
             setDisabled(true)
             sendApi('post', `articles/${article_id}/comments`, {
-                'username': 'grumpy19',
+                'username': `${user.user}`,
                 'body': body,
             })
             .then((data)=>{
