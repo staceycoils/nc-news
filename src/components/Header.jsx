@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import ManageUser from './ManageUser'
 
 export default function Header() {
   return (
@@ -10,6 +11,7 @@ export default function Header() {
         <h2>
             For a Daily Dose of 'News'
         </h2>
+        <ManageUser />
     </header>
   )
 }
