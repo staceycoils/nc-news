@@ -21,7 +21,7 @@ export default function ArticleListCard(props) {
         <span className='ArticleListGrid'>
             <p className='lhs'>
             Submitted By {author}<br />
-            Topic: {topic}<br />
+            Topic: <Link to={`/articles?topic=${topic}`}>{topic}</Link><br />
             Submitted {created_at.slice(0,10)}<br />
             </p>
             <p className='rhs'>
