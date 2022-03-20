@@ -14,7 +14,6 @@ export default function CommentCard(props) {
     useEffect(()=>{
         if (!user.user) setDisabled(true)
         else setDisabled(false)
-        console.log("BEEP", user, (!user))
     }, [user.user])
 
     useEffect(() => {
