@@ -1,13 +1,15 @@
 import { useState, useEffect, useContext } from 'react'
 import { fetchApi } from '../api';
 import HiddenComment from './HiddenComment';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext';
+import DeleteButton from './DeleteButton';
 
 export default function CommentCard(props) {
     const [comments, setComments] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [disabled, setDisabled] = useState(false);
+    const article = useParams().article_id
     const {articleRequest} = props 
     const user = useContext(UserContext)
 
@@ -24,6 +26,7 @@ export default function CommentCard(props) {
         });
     }, []);
 
+    if (isLoading) return <p>Loading.....</p>
   return ( 
     <div className='ArticlePage'>
     <Link to={`/articles/${articleRequest}/submit`}>
@@ -39,6 +42,12 @@ export default function CommentCard(props) {
                     </p>
                     <p className='rhs'>
                         Votes: {comment.votes}
+                        <br/>
+                        {user.user === comment.author ? 
+                        <DeleteButton 
+                        article={article} 
+                        comment={comment.comment_id}/> : 
+                        null}
                     </p>
                     <HiddenComment 
                     comment={comment}/>
