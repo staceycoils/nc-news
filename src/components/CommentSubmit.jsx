@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { fetchApi, sendApi } from '../api';
 import { useParams } from 'react-router-dom';
-import SubmitSuccess from './SubmitSuccess';
+import { CommentSuccess } from './SubmitSuccess';
 import { UserContext } from '../contexts/UserContext';
 
 export default function CommentSubmit() {
@@ -22,10 +22,10 @@ export default function CommentSubmit() {
     }, []);
 
     function submitComment() {
-        if (body === "Enter comment here" || (!body) ) {
-            setError("Please eneter a comment")
+        if (body === "Enter comment here" || (!body)) {
+            setError("Please enter a comment")
         } else {
-            setError("")
+            setError(null)
             setIsSending("Sending.....")
             setDisabled(true)
             sendApi('post', `articles/${article_id}/comments`, {
@@ -39,7 +39,7 @@ export default function CommentSubmit() {
         }
     }
 
-    if (isSending === "Done!") return <SubmitSuccess comment={newComment} title={title}/>
+    if (isSending === "Done!") return <CommentSuccess comment={newComment} title={title}/>
   return (
     <div className='ArticlePage'>
         <h4>Submit a comment</h4>
