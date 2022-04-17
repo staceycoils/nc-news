@@ -3,7 +3,7 @@ import { sendApi, fetchApi } from "../api";
 import { Link } from "react-router-dom";
 
 export default function ArticleCard(props) {
-    const { articleRequest } = props
+    const { articleRequest, setCommentTotal } = props
     const [article, setArticle] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isVoteLoading, setIsVoteLoading] = useState(false);
@@ -12,6 +12,7 @@ export default function ArticleCard(props) {
         fetchApi(`articles/${articleRequest}`)
             .then((apiArticle) => {
                 setArticle(apiArticle.article);
+                setCommentTotal(article.comment_count);
                 setIsLoading(false)
       });
     }, []);
