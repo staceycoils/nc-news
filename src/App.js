@@ -9,6 +9,7 @@ import TopicSubmit from './components/TopicSubmit';
 import CommentSubmit from './components/CommentSubmit';
 import { useState } from 'react';
 import { UserContext } from './contexts/UserContext';
+import Users from './components/Users';
 
 function App() {
   const [user, setUser] = useState(null)
@@ -25,6 +26,8 @@ function App() {
               <Route path="/articles/:article_id/submit" element={<CommentSubmit />} />
             <Route path="/topics" element={<Topics />} />
               <Route path="/topics/submit" element={<TopicSubmit />} />
+            
+            <Route path="/users" element={<Users />} />
           </Routes>
         </div>
       </UserContext.Provider>
