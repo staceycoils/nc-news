@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'
 import ArticleCard from './ArticleCard';
 import CommentCard from './CommentCard';
 
 export default function Article() {
+    const [commentTotal, setCommentTotal] = useState(0)
     const articleRequest = useParams().article_id;
     const navigate = useNavigate();
 
@@ -18,8 +20,8 @@ export default function Article() {
             onClick={returnToParent} >
             Back
         </button>
-        <ArticleCard articleRequest={articleRequest}/>
-        <CommentCard articleRequest={articleRequest}/>
+        <ArticleCard articleRequest={articleRequest} setCommentTotal={setCommentTotal}/>
+        <CommentCard articleRequest={articleRequest} commentTotal={commentTotal}/>
     </main>
   )
 }
