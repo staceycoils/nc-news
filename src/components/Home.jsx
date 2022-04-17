@@ -7,6 +7,7 @@ export default function Home() {
         Home<br />
         <Link to="/articles" >Articles</Link><br />
         <Link to="/topics" >Topics</Link><br />
+        <Link to="/users" >Users</Link><br />
     </div>
   )
 }
