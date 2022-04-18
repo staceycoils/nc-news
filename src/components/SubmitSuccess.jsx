@@ -39,3 +39,27 @@ export function TopicSuccess(props) {
     </div>
   )
 }
+
+export function ArticleSuccess(props) {
+    const {title, author, topic, created_at, body} = props.article
+    
+  return (
+    <div className='ArticlePage'>
+        <h3>Your article has been created!</h3>
+        <p className='lhs'>
+            {title}<br />
+            By: {author}<br />
+            In: {topic}<br />
+        </p>
+        <p className='rhs'>
+            Created at {created_at}
+        </p>
+        <p className='ArticleBody'>
+            {body}
+        </p>
+        <Link to={`/articles`}>
+            <button>Back to Article List</button>
+        </Link>
+    </div>
+  )
+}

@@ -126,3 +126,16 @@ h3 {
   width: 90%;
   min-width: 7rem;
 }
+
+.ArticleInput {
+  justify-content: left;
+  width: 90%;
+  min-width: 7rem;
+}
+
+.ArticleBodyInput {
+  justify-content: left;
+  width: 90%;
+  min-width: 7rem;
+  height: 300px;
+}

@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import ArticleListCard from './ArticleListCard';
 import { fetchApi } from '../api';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTopics } from './Topics';
 import ArticlePageSelect from './ArticlePageSelect';
 import SortBox from './SortBox';
 import TopicSelectBox from './TopicSelectBox';
 import OrderBox from './OrderBox';
+import { UserContext } from '../contexts/UserContext';
 
 export default function Articles(props) {
     const [articles, setArticles] = useState([]);
@@ -16,8 +17,15 @@ export default function Articles(props) {
     const [sort, setSort] = useState("All");
     const [order, setOrder] = useState("asc");
     const [isLoading, setIsLoading] = useState(true);
+    const [disabled, setDisabled] = useState(false);
     const navigate = useNavigate();
     const slug = useLocation();
+    const user = useContext(UserContext)
+
+    useEffect(()=>{
+        if (!user.user) setDisabled(true)
+        else setDisabled(false)
+    }, [user.user])
     
     useEffect(() => {
         fetchApi(`articles${slug.search}`)
@@ -64,6 +72,9 @@ export default function Articles(props) {
         <SortBox changeSort={changeSort}/>
         <OrderBox changeOrder={changeOrder} sort={sort}/>
         <ArticlePageSelect total={list} slug={slug} />
+        <Link to={`/articles/submit`}>
+            <button disabled={disabled}>Submit Article</button>
+        </Link>
         <ul>
             {articles.map(article=>{
                 return (
