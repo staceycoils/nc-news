@@ -13,7 +13,6 @@ export default function CommentList(props) {
 
     function giveVote(num) {
         comment.votes += num
-        console.log(comment.votes)
         const voteChange = { incVotes: num };
         setIsVoteLoading(true)
         sendApi('patch',`comments/${comment.comment_id}`, voteChange)
@@ -24,13 +23,14 @@ export default function CommentList(props) {
                 setIsVoteLoading(false)
             })
             .catch((err)=>{
-                article.votes -= num
+                comment.votes -= num
                 setIsVoteLoading(false)
                 alert(`${err}, please try again`)
             })
     }
 
     (comment.votes >= 0) ? comment.hide = false : comment.hide = true
+
   return (
     <span key={comment.comment_id}>
         <p className='lhs'>
