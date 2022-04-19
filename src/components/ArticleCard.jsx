@@ -1,12 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { sendApi, fetchApi } from "../api";
 import { Link } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
+import DeleteButton from "./DeleteButton";
 
 export default function ArticleCard(props) {
     const { articleRequest, setCommentTotal } = props
     const [article, setArticle] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isVoteLoading, setIsVoteLoading] = useState(false);
+    const [disabled, setDisabled] = useState(false);
+    const user = useContext(UserContext)
+
+    useEffect(()=>{
+        if (!user.user) setDisabled(true)
+        else setDisabled(false)
+    }, [user.user])
 
     useEffect(() => {
         fetchApi(`articles/${articleRequest}`)
@@ -42,7 +51,12 @@ export default function ArticleCard(props) {
             <h3>{article.title}</h3>
             <span className='ArticleListGrid'>
                 <p className='lhs'>By {article.author} <br />On {article.created_at.slice(0,10)}</p>
-                <p className='rhs'>In <Link to={`/articles?topic=${article.topic}`}>{article.topic}</Link></p>
+                <p className='rhs'>In <Link to={`/articles?topic=${article.topic}`}>{article.topic}</Link>
+                <br />{user.user === article.author ? 
+                    <DeleteButton 
+                    article={article.article_id} /> : 
+                    null}
+                </p>
             </span>
                 <p className='ArticleBody'>{article.body}</p>
             <span className='ArticleListGrid'>
