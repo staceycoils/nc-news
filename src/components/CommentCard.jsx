@@ -31,6 +31,14 @@ export default function CommentCard(props) {
     }, [page, refresh]);
 
     if (isLoading) return <p>Loading.....</p>
+    if (!comments) return (
+        <div className='ArticlePage'>
+            <Link to={`/articles/${articleRequest}/submit`}>
+                <button disabled={disabled}>Add Comment</button>
+            </Link>
+            <p className='ArticleBody'>No comments for this article.</p>
+        </div>
+    )
   return ( 
     <div className='ArticlePage'>
     <CommentPageSelect page={page} setPage={setPage} commentTotal={commentTotal}/>
