@@ -2,21 +2,23 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { sendApi } from '../api'
+import UserArticles from './UserArticles'
+import UserComments from './UserComments'
 
 export default function User() {
     const [user, setUser] = useState("")
-    const [isLoading, setIsLoading] = useState(true)
+    const [userLoading, setUserLoading] = useState(true)
     const userName = (useParams().username)
 
     useEffect(() => {
         sendApi('get', `users/${userName}`)    
           .then((apiUser)=>{
               setUser(apiUser.user)
-              setIsLoading(false)
+              setUserLoading(false)
           })
       }, [])
 
-    if (isLoading) return <p>Loading.....</p>
+    if (userLoading) return <p>Loading.....</p>
   return (
     <div className='ArticlePage'>
         <Link to='/users'>
@@ -29,6 +31,10 @@ export default function User() {
         <br />
         {user.name} 
         </p>
+        <span>
+        <UserArticles userName={userName} user={user}/>
+        <UserComments userName={userName} user={user}/>
+        </span>
     </div>
   )
 }
