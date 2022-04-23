@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default function HomeArticle(props) {
     const { article } = props ? props : null
 
-    if (!article) return <p>Loading...</p>
+    if (!article || !article.created_at) return <p>Loading...</p>
   return (
     <div className='ArticlePage'>
         <Link to={`articles/${article.article_id}`} >
