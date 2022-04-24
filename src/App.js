@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { UserContext } from './contexts/UserContext';
 import Users from './components/Users';
 import User from './components/User';
+import Login from './components/Login';
 
 function App() {
   const [user, setUser] = useState(null)
@@ -23,6 +24,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/articles" element={<Articles />} />
             <Route path="/articles/submit" element={<ArticleSubmit />} />
             <Route path="/articles/:article_id" element={<Article />} />
