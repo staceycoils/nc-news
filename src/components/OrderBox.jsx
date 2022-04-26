@@ -3,6 +3,7 @@ export default function OrderBox(props) {
 
     const alphaBlock = (
         <select id='SortOptsAZSelect' className='Select' onChange={changeOrder}>
+            <option value={null}>Order by...</option>
             <option value='asc'>A to Z</option>
             <option value='desc'>Z to A</option>
         </select>
@@ -10,6 +11,7 @@ export default function OrderBox(props) {
 
     const dateBlock = (
         <select id='SortOptsDateSelect' className='Select' onChange={changeOrder}>
+            <option value={null}>Order by...</option>
             <option value='desc'>Newest First</option>
             <option value='asc'>Oldest First</option>
         </select>
@@ -17,6 +19,7 @@ export default function OrderBox(props) {
 
     const countBlock = (
         <select id='SortOptsNumSelect' className='Select' onChange={changeOrder}>
+            <option value={null}>Order by...</option>
             <option value='desc'>Highest to Lowest</option>
             <option value='asc'>Lowest to Highest</option>
         </select>

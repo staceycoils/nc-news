@@ -20,8 +20,8 @@ export default function Article() {
             onClick={returnToParent} >
             Back
         </button>
-        <ArticleCard articleRequest={articleRequest} setCommentTotal={setCommentTotal}/>
-        <CommentCard articleRequest={articleRequest} commentTotal={commentTotal}/>
+        <ArticleCard articleRequest={articleRequest} />
+        <CommentCard articleRequest={articleRequest} />
     </main>
   )
 }

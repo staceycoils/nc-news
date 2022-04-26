@@ -12,7 +12,7 @@ export default function CommentCard(props) {
     const location = (useLocation().search.slice(3))
     const [page, setPage] = useState(location)
     const [refresh, setRefresh] = useState("")
-    const {articleRequest, commentTotal} = props 
+    const {articleRequest} = props 
     const user = useContext(UserContext)
 
     if (!page) setPage(1);
@@ -41,7 +41,7 @@ export default function CommentCard(props) {
     )
   return ( 
     <div className='ArticlePage'>
-    <CommentPageSelect page={page} setPage={setPage} commentTotal={commentTotal}/>
+    <CommentPageSelect page={page} setPage={setPage} articleRequest={articleRequest}/>
     <Link to={`/articles/${articleRequest}/submit`}>
         <button disabled={disabled}>Add Comment</button>
     </Link>

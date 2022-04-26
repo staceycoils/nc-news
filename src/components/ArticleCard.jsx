@@ -5,7 +5,7 @@ import { UserContext } from "../contexts/UserContext";
 import DeleteButton from "./DeleteButton";
 
 export default function ArticleCard(props) {
-    const { articleRequest, setCommentTotal } = props
+    const { articleRequest } = props
     const [article, setArticle] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isVoteLoading, setIsVoteLoading] = useState(false);
@@ -21,7 +21,6 @@ export default function ArticleCard(props) {
         fetchApi(`articles/${articleRequest}`)
             .then((apiArticle) => {
                 setArticle(apiArticle.article);
-                setCommentTotal(article.comment_count);
                 setIsLoading(false)
       });
     }, []);
