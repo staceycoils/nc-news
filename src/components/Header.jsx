@@ -6,6 +6,9 @@ import Logout from './Logout'
 
 export default function Header() {
   const { user } = useContext(UserContext)
+  let today = new Date();
+  let date = today.toLocaleDateString()
+  let time = today.toLocaleTimeString().slice(0,5)
 
   const logStatusButton =
     !user ?
@@ -31,6 +34,9 @@ export default function Header() {
         <h2>
             For a Daily Dose of 'News'
         </h2>
+        <h3>
+          {date}&nbsp;{time}
+        </h3>
         {logStatusButton}<br />
         <Link to="/" >Home</Link>&nbsp;
         <Link to="/articles" >Articles</Link>&nbsp;
