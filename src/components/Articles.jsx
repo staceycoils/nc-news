@@ -28,7 +28,17 @@ export default function Articles(props) {
     }, [user.user])
     
     useEffect(() => {
-        fetchApi(`articles${slug.search}`)
+        if (slug.search.slice(9,17) === "comments") {
+            fetchApi(`articles?limit=none`)
+            .then((apiAllArticles) => {
+                apiAllArticles.articles.sort((a,b)=>{
+                    return Number.parseInt(a.comment_count) < Number.parseInt(b.comment_count)
+                })
+                setArticles(apiAllArticles.articles);
+                setList(apiAllArticles.total_count)
+                setIsLoading(false)
+            })}
+        else fetchApi(`articles${slug.search}`)
             .then((apiArticles) => {
                 setArticles(apiArticles.articles);
                 setList(apiArticles.total_count)
