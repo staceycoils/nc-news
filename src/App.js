@@ -13,6 +13,7 @@ import { UserContext } from './contexts/UserContext';
 import Users from './components/Users';
 import User from './components/User';
 import Login from './components/Login';
+import MissingPage from './components/MissingPage';
 
 function App() {
   const [user, setUser] = useState(null)
@@ -31,9 +32,9 @@ function App() {
               <Route path="/articles/:article_id/submit" element={<CommentSubmit />} />
             <Route path="/topics" element={<Topics />} />
               <Route path="/topics/submit" element={<TopicSubmit />} />
-            
             <Route path="/users" element={<Users />} />
             <Route path="/user/:username" element={<User />} />
+            <Route path="*" element={<MissingPage />} />
           </Routes>
         </div>
       </UserContext.Provider>

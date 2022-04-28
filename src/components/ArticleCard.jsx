@@ -1,11 +1,11 @@
 import { useState, useEffect, useContext } from "react";
 import { sendApi, fetchApi } from "../api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import DeleteButton from "./DeleteButton";
 
 export default function ArticleCard(props) {
-    const { articleRequest } = props
+    const { articleRequest,setError } = props
     const [article, setArticle] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isVoteLoading, setIsVoteLoading] = useState(false);
@@ -22,7 +22,11 @@ export default function ArticleCard(props) {
             .then((apiArticle) => {
                 setArticle(apiArticle.article);
                 setIsLoading(false)
-      });
+            
+      })
+            .catch((err)=>{
+                setError({err})
+            })
     }, []);
 
     function giveVote(num) {
@@ -43,7 +47,7 @@ export default function ArticleCard(props) {
                 alert(`${err}, please try again`)
             })
     }
-
+    
     if (isLoading) return <p>Loading.....</p>
     return (
         <div className='ArticlePage'>

@@ -86,13 +86,16 @@ export default function Articles(props) {
             <button disabled={disabled}>Submit Article</button>
         </Link>
         <ul>
-            {articles.map(article=>{
+            {articles.length !== 0?
+            articles.map(article=>{
                 return (
                     <li key={article.article_id}>
                         <ArticleListCard card={article}/>
                     </li>
                 )
-            })}    
+            }):
+            <p>No articles found.</p>
+            }    
         </ul> 
         <ArticlePageSelect total={list} slug={slug} />
     </main>

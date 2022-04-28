@@ -4,8 +4,10 @@ import { useParams, Link } from 'react-router-dom'
 import { sendApi } from '../api'
 import UserArticles from './UserArticles'
 import UserComments from './UserComments'
+import ErrorPage from './ErrorPage'
 
 export default function User() {
+    const [error, setError] = useState(null)
     const [user, setUser] = useState("")
     const [userLoading, setUserLoading] = useState(true)
     const userName = (useParams().username)
@@ -16,8 +18,12 @@ export default function User() {
               setUser(apiUser.user)
               setUserLoading(false)
           })
+          .catch((err)=>{
+            setError({err})
+          })
       }, [])
 
+    if (error) return <ErrorPage error={error} type="user" />  
     if (userLoading) return <p>Loading.....</p>
   return (
     <div className='ArticlePage'>
