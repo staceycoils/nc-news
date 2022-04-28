@@ -21,6 +21,7 @@ export default function Articles(props) {
     const navigate = useNavigate();
     const slug = useLocation();
     const user = useContext(UserContext)
+    const [limiter, setLimiter] = useState(0);
 
     useEffect(()=>{
         if (!user.user) setDisabled(true)
@@ -28,17 +29,7 @@ export default function Articles(props) {
     }, [user.user])
     
     useEffect(() => {
-        if (slug.search.slice(9,17) === "comments") {
-            fetchApi(`articles?limit=none`)
-            .then((apiAllArticles) => {
-                apiAllArticles.articles.sort((a,b)=>{
-                    return Number.parseInt(a.comment_count) < Number.parseInt(b.comment_count)
-                })
-                setArticles(apiAllArticles.articles);
-                setList(apiAllArticles.total_count)
-                setIsLoading(false)
-            })}
-        else fetchApi(`articles${slug.search}`)
+         fetchApi(`articles${slug.search}`)
             .then((apiArticles) => {
                 setArticles(apiArticles.articles);
                 setList(apiArticles.total_count)
@@ -57,7 +48,7 @@ export default function Articles(props) {
     function changeSort(e) {
         if (e.target.value === "Sort by...") return
         setSort(e.target.value)
-        if (e.target.value === "created_at" || e.target.value === "votes") {
+        if (e.target.value === "created_at" || e.target.value === "votes" || e.target.value === "comment_count") {
             changePage(undefined, e.target.value, "desc")
         } else changePage(undefined, e.target.value, "asc")
     }
