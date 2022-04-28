@@ -10,7 +10,7 @@ export default function SortBox(props) {
         <option key={'SortOptionAuthor'} value ='author'>Author</option>
         <option key={'SortOptionDate'} value="created_at">Date Posted</option>
         <option key={'SortOptionVotes'} value="votes">Votes</option>
-        <option key={'SortOptionComments'} value="comments">Comment Count</option>
+        <option key={'SortOptionComments'} value="comment_count">Comment Count</option>
     </select>
   )
 }

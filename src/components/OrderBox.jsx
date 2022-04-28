@@ -32,7 +32,7 @@ export default function OrderBox(props) {
     if (sort === "created_at") return (
         <div>{dateBlock}</div>
     )
-    if (sort === "votes") return (
+    if (sort === "votes" || sort === "comment_count") return (
         <div>{countBlock}</div>
     )
     else return null
