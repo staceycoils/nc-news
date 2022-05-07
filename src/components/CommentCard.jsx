@@ -40,11 +40,11 @@ export default function CommentCard(props) {
         </div>
     )
   return ( 
-    <div className='ArticlePage'>
-    <CommentPageSelect page={page} setPage={setPage} articleRequest={articleRequest}/>
+    <div className='articlecomments'>
     <Link to={`/articles/${articleRequest}/submit`}>
         <button disabled={disabled}>Add Comment</button>
     </Link>
+    <CommentPageSelect page={page} setPage={setPage} articleRequest={articleRequest}/>
         {comments.map((comment)=>{
             return (
                 <CommentList 
@@ -54,6 +54,8 @@ export default function CommentCard(props) {
                 />
             )
         })}
+        <br />
+    <CommentPageSelect page={page} setPage={setPage} articleRequest={articleRequest}/>
     </div>
   )
 }

@@ -18,9 +18,9 @@ export default function Article() {
 
     if (error) return <ErrorPage error={error} type="article" />
   return (
-    <main>
+    <main className='article__main'>
         <button 
-            className='ButtonBack'
+            className='buttonback'
             onClick={returnToParent} >
             Back
         </button>

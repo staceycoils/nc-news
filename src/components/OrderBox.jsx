@@ -2,7 +2,7 @@ export default function OrderBox(props) {
     const { sort, changeOrder } = props
 
     const alphaBlock = (
-        <select id='SortOptsAZSelect' className='Select' onChange={changeOrder}>
+        <select id='SortOptsAZSelect' className='articles__select' onChange={changeOrder}>
             <option value={null}>Order by...</option>
             <option value='asc'>A to Z</option>
             <option value='desc'>Z to A</option>
@@ -10,7 +10,7 @@ export default function OrderBox(props) {
     )
 
     const dateBlock = (
-        <select id='SortOptsDateSelect' className='Select' onChange={changeOrder}>
+        <select id='SortOptsDateSelect' className='articles__select' onChange={changeOrder}>
             <option value={null}>Order by...</option>
             <option value='desc'>Newest First</option>
             <option value='asc'>Oldest First</option>
@@ -18,7 +18,7 @@ export default function OrderBox(props) {
     )
 
     const countBlock = (
-        <select id='SortOptsNumSelect' className='Select' onChange={changeOrder}>
+        <select id='SortOptsNumSelect' className='articles__select' onChange={changeOrder}>
             <option value={null}>Order by...</option>
             <option value='desc'>Highest to Lowest</option>
             <option value='asc'>Lowest to Highest</option>
@@ -35,5 +35,5 @@ export default function OrderBox(props) {
     if (sort === "votes" || sort === "comment_count") return (
         <div>{countBlock}</div>
     )
-    else return null
+    else return <div>Pie</div>
 }

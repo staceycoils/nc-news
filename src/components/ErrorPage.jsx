@@ -11,7 +11,7 @@ export default function ErrorPage(props) {
     }
 
     const notFound = (
-        <div>
+        <div className='errorpage'>
             <h3>Error {error.err.response.status}</h3>
             <h3>ID not found :&#40;</h3>
             <p>
@@ -20,11 +20,16 @@ export default function ErrorPage(props) {
                 Please confirm the ID you are trying access is correct.<br />
                 If you continue to see this message, please contact us via GitHub.<br />
             </p>
+            <button 
+            className='buttonback'
+            onClick={returnToParent} >
+            Back
+        </button>
         </div>
     )
 
     const badRequest = (
-        <div>
+        <div className='errorpage'>
             <h3>Error {error.err.response.status}</h3>
             <h3>{error.err.response.statusText}</h3>
             <p>
@@ -32,11 +37,16 @@ export default function ErrorPage(props) {
                 Please correct any errors in the address and retry.<br />
                 If you continue to see this message, please contact us via GitHub.<br />
             </p>
+            <button 
+            className='buttonback'
+            onClick={returnToParent} >
+            Back
+            </button>
         </div>
     )
 
     const serverError = (
-        <div>
+        <div className='errorpage'>
             <h3>Error {error.err.response.status}</h3>
             <h3>{error.err.response.statusText}</h3>
             <p>
@@ -45,6 +55,11 @@ export default function ErrorPage(props) {
                 If you continue to see this message, please contact us via GitHub.<br />
                 We apologise for the inconvenience.
             </p>
+            <button 
+            className='buttonback'
+            onClick={returnToParent} >
+            Back
+            </button>
         </div>
     )
 
@@ -56,11 +71,6 @@ export default function ErrorPage(props) {
 
   return (
     <div>
-        <button 
-            className='ButtonBack'
-            onClick={returnToParent} >
-            Back
-        </button>
         {handleError(error)}
     </div>
   )

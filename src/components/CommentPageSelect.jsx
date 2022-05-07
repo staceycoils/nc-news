@@ -27,7 +27,7 @@ export default function CommentPageSelect(props) {
     createPages()
 
   return (
-    <div>
+    <div className='articlecomments__sorting'>
         <button key={`selectPrevPage`}
         onClick={()=>{setPage(page-1)}}
         disabled={page===1}

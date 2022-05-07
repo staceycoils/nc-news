@@ -1,4 +1,4 @@
-import './App.css';
+import './App_main.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header'
 import Home from './components/Home';
@@ -14,6 +14,7 @@ import Users from './components/Users';
 import User from './components/User';
 import Login from './components/Login';
 import MissingPage from './components/MissingPage';
+import Footer from './components/Footer';
 
 function App() {
   const [user, setUser] = useState(null)
@@ -36,6 +37,7 @@ function App() {
             <Route path="/user/:username" element={<User />} />
             <Route path="*" element={<MissingPage />} />
           </Routes>
+          <Footer />
         </div>
       </UserContext.Provider>
     </BrowserRouter>

@@ -68,19 +68,28 @@ export default function Articles(props) {
 
   if (isLoading) return <p>Loading.....</p>
   return (
-    <main className='Articles'>
-        <TopicSelectBox topics={topics} changeTopic={changeTopic}/>
-        <SortBox changeSort={changeSort}/>
-        <OrderBox changeOrder={changeOrder} sort={sort}/>
-        <ArticlePageSelect total={list} slug={slug} />
-        <Link to={`/articles/submit`}>
-            <button disabled={disabled}>Submit Article</button>
-        </Link>
-        <ul>
+    <main className='articles__main'>
+        <div className='articles__options'>
+            <br />
+            <TopicSelectBox topics={topics} changeTopic={changeTopic}/>
+            <div className='articles__sorting'>
+                <SortBox changeSort={changeSort}/>
+                <OrderBox changeOrder={changeOrder} sort={sort}/>
+            </div>
+            <ArticlePageSelect total={list} slug={slug} />
+        </div>
+        <div className='articles__options'>
+            <br />
+            <Link to={`/articles/submit`}>
+                <button disabled={disabled} className='articles__button'>Submit Article</button>
+            </Link>
+        </div>
+        <ul className='articles__list'>
             {articles.length !== 0?
             articles.map(article=>{
                 return (
-                    <li key={article.article_id}>
+                    <li key={article.article_id}
+                    className='articles__listitem'>
                         <ArticleListCard card={article}/>
                     </li>
                 )
@@ -88,7 +97,15 @@ export default function Articles(props) {
             <p>No articles found.</p>
             }    
         </ul> 
-        <ArticlePageSelect total={list} slug={slug} />
+        <div className='articles__options--end'>
+            <br />
+            <TopicSelectBox topics={topics} changeTopic={changeTopic}/>
+            <div className='articles__sorting'>
+                <SortBox changeSort={changeSort}/>
+                <OrderBox changeOrder={changeOrder} sort={sort}/>
+            </div>
+            <ArticlePageSelect total={list} slug={slug} />
+        </div>
     </main>
   )
 }

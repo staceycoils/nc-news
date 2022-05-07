@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { sendApi } from '../api'
 import UserArticles from './UserArticles'
 import UserComments from './UserComments'
@@ -11,6 +11,7 @@ export default function User() {
     const [user, setUser] = useState("")
     const [userLoading, setUserLoading] = useState(true)
     const userName = (useParams().username)
+    const navigate = useNavigate()
 
     useEffect(() => {
         sendApi('get', `users/${userName}`)    
@@ -26,21 +27,21 @@ export default function User() {
     if (error) return <ErrorPage error={error} type="user" />  
     if (userLoading) return <p>Loading.....</p>
   return (
-    <div className='ArticlePage'>
-        <Link to='/users'>
-            <button>Back</button>
-        </Link>
-        <p className='ArticleBody'>
-        <img src={user.avatar_url} />
+    <div className='userbox'>
+        <button className='buttonback'
+        onClick={()=>navigate(-1)}>&lt; Back</button>
         <br />
-        {user.username} 
-        <br />
-        {user.name} 
-        </p>
-        <span>
+        <span className='userbox__user'>
+          <img src={user.avatar_url} className='userbox__avatar'/>
+          <p className='userbox__userinfo'>
+            <b>Username:</b><br />
+            {user.username}<br /><br />
+            <b>Alias:</b><br />
+            {user.name}
+          </p>
+        </span>
         <UserArticles userName={userName} user={user}/>
         <UserComments userName={userName} user={user}/>
-        </span>
     </div>
   )
 }

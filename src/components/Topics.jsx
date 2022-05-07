@@ -28,15 +28,19 @@ export function Topics() {
 
     if (isLoading) return <p>Loading.....</p>
   return (
-    <main className='Articles'>
+    <main className='topicbox'>
+        <br />
         <Link to={`/topics/submit`}>
-        <button disabled={disabled}>Submit Topic</button>
+        <button disabled={disabled} 
+        className='topicbox__submit'
+        >Submit Topic</button>
         </Link>
-        <ul>
+        <br />
+        <ul className='topicbox__list'>
             {topics.map(topic=>{
                 return (
-                    <li key={topic.slug} className='ArticleList'>
-                        <h3>
+                    <li key={topic.slug} className='topicbox__listitem'>
+                        <h3 className='topicbox__listtitle'>
                             <Link to={`/articles?topic=${topic.slug}`}>
                             {topic.slug}
                             </Link>

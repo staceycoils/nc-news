@@ -6,11 +6,11 @@ export default function HomeArticle(props) {
 
     if (!article || !article.created_at) return <p>Loading...</p>
   return (
-    <div className='ArticlePage'>
+    <div>
         <Link to={`articles/${article.article_id}`} >
             <h3>{article.title}</h3>
         </Link>
-        <p className='ArticleBody'>
+        <p>
             By: &nbsp;
             <Link to={`/user/${article.author}`}>
               {article.author}

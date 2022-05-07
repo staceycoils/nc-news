@@ -12,7 +12,7 @@ export default function Header() {
 
   const logStatusButton =
     !user ?
-    <div>
+    <div className='header__main'>
       Not logged in<br />
       <Link to={"/login"} >
       <button>
@@ -21,27 +21,48 @@ export default function Header() {
       </Link>
     </div>
     :
-    <div>
+    <div className='header__main'>
       Logged in as: {user}<br />
       <Logout />
     </div>
 
+    const pic = "https://pbs.twimg.com/profile_images/1333392601450426370/x_DT51WI_400x400.jpg"
+
   return (
     <header className='header'>
-        <h1>
-        <Link to="/">NC NEWS</Link>
+        <h1 className='header__title'>
+        <Link to="/">
+          <img src={`${pic}`} className=''
+          height="100%" width="100%"/>
+        </Link>
         </h1>
-        <h2>
+        <h2 className='header__subhead'>
             For a Daily Dose of 'News'
         </h2>
-        <h3>
+        <h3 className='header__main'>
           {date}&nbsp;{time}
         </h3>
-        {logStatusButton}<br />
-        <Link to="/" >Home</Link>&nbsp;
-        <Link to="/articles" >Articles</Link>&nbsp;
-        <Link to="/topics" >Topics</Link>&nbsp;
-        <Link to="/users" >Users</Link>
+        {logStatusButton}
+        <Link to="/" >
+          <button className='header__button'>
+            Home
+          </button>
+        </Link>
+        <Link to="/articles" >
+          <button className='header__button'>
+            Articles
+          </button>
+        </Link>
+        <Link to="/topics" >
+          <button className='header__button'>
+            Topics
+          </button>
+        </Link>
+        <Link to="/users" >
+          <button className='header__button'>
+            Users
+          </button>
+        </Link>
     </header>
   )
 }

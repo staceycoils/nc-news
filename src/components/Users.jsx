@@ -18,10 +18,10 @@ export default function Users() {
 
     if (isLoading) return <p>Loading.....</p>
   return (
-    <div className='ArticlePage'>
+    <div className='usersbox'>
         {users.usernames.map((user)=>{
             return (
-                <p className='ArticleBody'
+                <p className='usersbox__item'
                 key={`username${user}`}
                 >
                     <Link to={`/user/${user}`}>{user}</Link>

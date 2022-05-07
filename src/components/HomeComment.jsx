@@ -6,8 +6,8 @@ export default function HomeArticle(props) {
 
     if (!comment) return <p>Loading...</p>
   return (
-    <div className='ArticlePage'>
-        <p className='ArticleBody'>
+    <div>
+        <p>
           <Link to={`/articles/${comment.article_id}`}>
             {comment.body}<br />
           </Link>

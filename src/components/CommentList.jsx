@@ -32,33 +32,34 @@ export default function CommentList(props) {
     (comment.votes >= 0) ? comment.hide = false : comment.hide = true
 
   return (
-    <span key={comment.comment_id}>
-        <p className='lhs'>
-            {comment.author}<br />
-            At {comment.created_at.slice(0,10)}
+    <div key={comment.comment_id} className='articlecomments__comment'>
+        <p>
+            {comment.author}
         </p>
-        <p className='rhs'>
-            Votes: {comment.votes}
-            <br/>
-        <button 
-            onClick={(event) => giveVote(1)}
-            className='voteButton'
-            disabled={isVoteLoading}
-            >^</button>
-        <button 
-            onClick={(event) => giveVote(-1)}
-            className='voteButton'
-            disabled={isVoteLoading}
-            >v</button>
+        <p className='articlecomments__comment--rhs'>
+            {comment.created_at.slice(11,16)}&nbsp;
+            {comment.created_at.slice(0,10)}
+        </p>
+            <HiddenComment 
+            comment={comment}/>
+        <br />
+        <p className='articlecomments__comment--rhs'>
         {user.user === comment.author ? 
             <DeleteButton 
             article={article} 
             comment={comment.comment_id}/> : 
             null}
+            Votes: {comment.votes}
+        <button 
+            onClick={(event) => giveVote(1)}
+            disabled={isVoteLoading}
+            >^</button>
+        <button 
+            onClick={(event) => giveVote(-1)}
+            disabled={isVoteLoading}
+            >v</button>
         </p>
-        <HiddenComment 
-        comment={comment}/>
-    </span>
+    </div>
   )
 }
 

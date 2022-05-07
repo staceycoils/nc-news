@@ -40,11 +40,11 @@ export default function UserComments(props) {
 
     const userComments =
     comments.length ?
-    <ul>
+    <ul className='userbox__list'>
       {comments.map((comment) => {
         return (
           <li key={`UserArt${comment.comment_id}`}
-          className='ArticleBody'>
+          className='userbox__listitem'>
             <Link to={`/articles/${comment.article_id}`} >
             {comment.body.slice(0,50)}...
             </Link><br />
@@ -69,9 +69,9 @@ export default function UserComments(props) {
         )
     } else
   return (
-    <span>
+    <div className='userbox__comments'>
         <h3>{user.username}'s Comments</h3>
         {userComments}
-    </span>
+    </div>
   )
 }

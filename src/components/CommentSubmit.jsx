@@ -1,8 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
 import { fetchApi, sendApi } from '../api';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { CommentSuccess } from './SubmitSuccess';
 import { UserContext } from '../contexts/UserContext';
+import { useMatch } from 'react-router-dom';
 
 export default function CommentSubmit() {
     const [body, setBody] = useState("");
@@ -13,6 +14,7 @@ export default function CommentSubmit() {
     const [title, setTitle] = useState("");
     const {article_id} = useParams()
     const user = useContext(UserContext)
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetchApi(`articles/${article_id}`)
@@ -39,18 +41,25 @@ export default function CommentSubmit() {
         }
     }
 
+    const submitClass = error ? "submitcomment__submitbox--error" : "submitcomment__submitbox"
+
+    if (user.user === null) navigate("/")
     if (isSending === "Done!") return <CommentSuccess comment={newComment} title={title}/>
   return (
-    <div className='ArticlePage'>
-        <h4>Submit a comment</h4>
+    <div className='submitcomment'>
+        <h4 className='submitcomment__title'>Submit a comment</h4>
         <p>
             Replying to: '{title}'<br />
-            <input className='CommentInput' 
+            <textarea 
+            type='text'
+            className={submitClass} 
             defaultValue={'Enter comment here'}
             onBlur={(event)=>{setBody(event.target.value)}}>
-            </input>
+            </textarea>
         </p>
-        {error}<br />
+        <p className='submitcomment__error'>
+            {error}
+        </p>
         <button onClick={()=>{submitComment()}}
                 disabled={disabled}
                 >Submit</button>

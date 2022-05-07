@@ -15,7 +15,7 @@ export default function ArticlePageSelect(props) {
     let nextPage = (currentPage <= pages.length-1 ? currentPage + 1 : currentPage )
 
   return (
-    <div>
+    <div className="articles__options--right">
         <Link key={`linkPrevPage`} to={`/articles${pageHome}${prevPage}`}>
         <button key={`selectPrevPage`}>Prev</button>
         </Link>
