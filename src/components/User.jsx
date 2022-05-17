@@ -28,11 +28,13 @@ export default function User() {
     if (userLoading) return <p>Loading.....</p>
   return (
     <div className='userbox'>
-        <button className='buttonback'
+        <button className='buttonback--mobhidden'
         onClick={()=>navigate(-1)}>&lt; Back</button>
         <br />
         <span className='userbox__user'>
-          <img src={user.avatar_url} className='userbox__avatar'/>
+          <img src={user.avatar_url} className='userbox__avatar'
+          alt={`An image submitted for the avatar of user ${user.username}`}
+          />
           <p className='userbox__userinfo'>
             <b>Username:</b><br />
             {user.username}<br /><br />

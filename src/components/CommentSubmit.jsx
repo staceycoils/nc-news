@@ -62,6 +62,7 @@ export default function CommentSubmit() {
         </p>
         <button onClick={()=>{submitComment()}}
                 disabled={disabled}
+                className='submitcomment__button'
                 >Submit</button>
         <p>{isSending}</p>
     </div>

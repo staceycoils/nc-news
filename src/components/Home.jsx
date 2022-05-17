@@ -51,13 +51,19 @@ export default function Home() {
           <HomeArticle article={hotArticles[2]} />
       </div>
       <div className='homearticles__seperator'></div>
-      <h2 className='homearticles__title'>Latest Article</h2>
-      <h2 className='homearticles__title'>Latest Comment</h2>
-      <div className='homearticles'>
-          <HomeArticle article={latest} />
-      </div>
-      <div className='homearticles'>
-          <HomeComment comment={comment[0]} />
+      <div className='homearticles__lower'>
+        <div>
+          <h2 className='homearticles__title'>Latest Article</h2>
+          <div className='homearticles'>
+              <HomeArticle article={latest} />
+          </div>
+        </div>
+        <div>
+          <h2 className='homearticles__title'>Latest Comment</h2>
+          <div className='homearticles'>
+              <HomeComment comment={comment[0]} />
+          </div>
+        </div>
       </div>
     </div>
   )

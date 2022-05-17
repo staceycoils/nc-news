@@ -33,7 +33,7 @@ export default function CommentList(props) {
 
   return (
     <div key={comment.comment_id} className='articlecomments__comment'>
-        <p>
+        <p className='articlecomments__comment--lhs'>
             {comment.author}
         </p>
         <p className='articlecomments__comment--rhs'>
@@ -43,21 +43,23 @@ export default function CommentList(props) {
             <HiddenComment 
             comment={comment}/>
         <br />
-        <p className='articlecomments__comment--rhs'>
+        <p className='articlecomments__comment--info'>
         {user.user === comment.author ? 
             <DeleteButton 
             article={article} 
             comment={comment.comment_id}/> : 
             null}
-            Votes: {comment.votes}
+        Votes: {comment.votes}
         <button 
             onClick={(event) => giveVote(1)}
+            className='buttonvote--comment'
             disabled={isVoteLoading}
-            >^</button>
+            >&uarr;</button>
         <button 
             onClick={(event) => giveVote(-1)}
+            className='buttonvote--comment'
             disabled={isVoteLoading}
-            >v</button>
+            >&darr;</button>
         </p>
     </div>
   )

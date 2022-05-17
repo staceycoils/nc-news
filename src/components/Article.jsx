@@ -20,7 +20,7 @@ export default function Article() {
   return (
     <main className='article__main'>
         <button 
-            className='buttonback'
+            className='buttonback--article'
             onClick={returnToParent} >
             Back
         </button>

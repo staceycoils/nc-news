@@ -69,18 +69,21 @@ export default function ArticleCard(props) {
             <span className="articlebody__details">
                 <p className="articlebody__details--lhs">
                     Votes: {article.votes}
+                    </p>
+                <p className="articlebody__details--rhs">Comments({article.comment_count})</p>
+                <p className="articlebody__details--votes">    
                     <button 
                         onClick={(event) => giveVote(1)}
-                        className='voteButton'
+                        className='buttonvote'
                         disabled={isVoteLoading}
-                        >^</button>
+                        alte
+                        >&uarr;</button>
                     <button 
                         onClick={(event) => giveVote(-1)}
-                        className='voteButton'
+                        className='buttonvote'
                         disabled={isVoteLoading}
-                        >v</button>
+                        >&darr;</button>
                 </p>
-                <p className="articlebody__details--rhs">Comments({article.comment_count})</p>
             </span>
         </div>
   )

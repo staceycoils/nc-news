@@ -70,13 +70,14 @@ export default function Articles(props) {
   return (
     <main className='articles__main'>
         <div className='articles__options'>
-            <br />
             <TopicSelectBox topics={topics} changeTopic={changeTopic}/>
             <div className='articles__sorting'>
                 <SortBox changeSort={changeSort}/>
                 <OrderBox changeOrder={changeOrder} sort={sort}/>
             </div>
+            <div className='articles__options--pageselect'>
             <ArticlePageSelect total={list} slug={slug} />
+            </div>
         </div>
         <div className='articles__options'>
             <br />
@@ -99,8 +100,10 @@ export default function Articles(props) {
         </ul> 
         <div className='articles__options--end'>
             <br />
+            <div className="mob--hidden">
             <TopicSelectBox topics={topics} changeTopic={changeTopic}/>
-            <div className='articles__sorting'>
+            </div>
+            <div className='articles__sorting--end'>
                 <SortBox changeSort={changeSort}/>
                 <OrderBox changeOrder={changeOrder} sort={sort}/>
             </div>

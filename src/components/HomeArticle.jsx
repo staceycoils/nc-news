@@ -8,7 +8,7 @@ export default function HomeArticle(props) {
   return (
     <div>
         <Link to={`articles/${article.article_id}`} >
-            <h3>{article.title}</h3>
+            <p className='homearticles__toptitle'>{article.title}</p>
         </Link>
         <p>
             By: &nbsp;

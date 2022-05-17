@@ -12,7 +12,6 @@ export default function CommentPageSelect(props) {
         sendApi('get',`articles/${articleRequest}`)
             .then((apiArticle)=>{
                 setTotal(apiArticle.article.comment_count)
-                // setTotal(34)
             })
     }, [])
 
@@ -31,13 +30,15 @@ export default function CommentPageSelect(props) {
         <button key={`selectPrevPage`}
         onClick={()=>{setPage(page-1)}}
         disabled={page===1}
+        className='buttonpage'
         >Prev</button>
         
         {pageArray.map((p)=>{
             return (
                 <button key={`CommentPage${p}`}
                 onClick={()=>{setPage(p)}}
-                disabled={page===p}>
+                disabled={page===p}
+                className='buttonpage'>
                     {p}
                 </button>
             )
@@ -46,6 +47,7 @@ export default function CommentPageSelect(props) {
         <button key={`selectNextPage`}
         onClick={()=>{setPage(page+1)}}
         disabled={page===pages}
+        className='buttonpage'
         >Next</button>
     </div>
   )

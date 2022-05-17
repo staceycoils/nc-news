@@ -12,16 +12,18 @@ export default function Header() {
 
   const logStatusButton =
     !user ?
-    <div className='header__main'>
-      Not logged in<br />
+    <div className='header__log'>
+      <p className='header__logstatus'>
+        Not logged in
+      </p>
       <Link to={"/login"} >
-      <button>
+      <button className='header__login'>
         LOGIN
       </button>
       </Link>
     </div>
     :
-    <div className='header__main'>
+    <div className='header__log'>
       Logged in as: {user}<br />
       <Logout />
     </div>
@@ -32,37 +34,40 @@ export default function Header() {
     <header className='header'>
         <h1 className='header__title'>
         <Link to="/">
-          <img src={`${pic}`} className=''
-          height="100%" width="100%"/>
+          <img src={`${pic}`} className='header__icon'
+          alt='Logo of NorthCoders'/>
         </Link>
         </h1>
-        <h2 className='header__subhead'>
-            For a Daily Dose of 'News'
-        </h2>
+        <div className='header__subhead'>
+            <h3 className='header__subhead--h3'>NorthCoders News</h3>
+            <h5 className='header__subhead--h5'>For a Daily Dose of 'News'</h5>
+        </div>
         <h3 className='header__main'>
-          {date}&nbsp;{time}
+          {date}<br/>{time}
         </h3>
         {logStatusButton}
-        <Link to="/" >
-          <button className='header__button'>
-            Home
-          </button>
-        </Link>
-        <Link to="/articles" >
-          <button className='header__button'>
-            Articles
-          </button>
-        </Link>
-        <Link to="/topics" >
-          <button className='header__button'>
-            Topics
-          </button>
-        </Link>
-        <Link to="/users" >
-          <button className='header__button'>
-            Users
-          </button>
-        </Link>
+        <p className='header__buttonholder'>
+          <Link to="/" >
+            <button className='header__button--lhs'>
+              Home
+            </button>
+          </Link>
+          <Link to="/articles" >
+            <button className='header__button'>
+              Articles
+            </button>
+          </Link>
+          <Link to="/topics" >
+            <button className='header__button'>
+              Topics
+            </button>
+          </Link>
+          <Link to="/users" >
+            <button className='header__button'>
+              Users
+            </button>
+          </Link>
+        </p>
     </header>
   )
 }
