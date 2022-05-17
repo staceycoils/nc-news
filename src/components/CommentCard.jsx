@@ -32,19 +32,25 @@ export default function CommentCard(props) {
 
     if (isLoading) return <p>Loading.....</p>
     if (!comments) return (
-        <div className='ArticlePage'>
+        <div className='articlecomments'>
+            <p className='articlecomments__submit'>
             <Link to={`/articles/${articleRequest}/submit`}>
-                <button disabled={disabled}>Add Comment</button>
+                <button disabled={disabled}
+                className='articlecomments__button'>Add Comment</button>
             </Link>
-            <p className='ArticleBody'>No comments for this article.</p>
+            </p>
+            <p className='articlecomments__none'>No comments for this article.</p>
         </div>
     )
   return ( 
-    <div className='ArticlePage'>
-    <CommentPageSelect page={page} setPage={setPage} articleRequest={articleRequest}/>
+    <div className='articlecomments'>
+        <p className='articlecomments__submit'>
     <Link to={`/articles/${articleRequest}/submit`}>
-        <button disabled={disabled}>Add Comment</button>
+        <button disabled={disabled}
+        className='articlecomments__button'>Add Comment</button>
     </Link>
+        </p>
+    <CommentPageSelect page={page} setPage={setPage} articleRequest={articleRequest}/>
         {comments.map((comment)=>{
             return (
                 <CommentList 
@@ -54,6 +60,8 @@ export default function CommentCard(props) {
                 />
             )
         })}
+        <br />
+    <CommentPageSelect page={page} setPage={setPage} articleRequest={articleRequest}/>
     </div>
   )
 }

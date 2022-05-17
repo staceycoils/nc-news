@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { fetchApi, sendApi } from '../api';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { CommentSuccess } from './SubmitSuccess';
 import { useTopics } from './Topics';
 import TopicSelectBox from './TopicSelectBox';
@@ -12,18 +12,20 @@ export default function ArticleSubmit() {
     const [title, setTitle] = useState("");
     const [topic, setTopic] = useState("");
     const [topics, setTopics] = useState([{ slug: 'Select Topic'}]);
-    const [error, setError] = useState("");
+    const [errorTitle, setErrorTitle] = useState(null);
+    const [errorTopic, setErrorTopic] = useState(null);
+    const [errorBody, setErrorBody] = useState(null);
     const [isSending, setIsSending] = useState("");
     const [isLoading, setIsLoading] = useState("");
     const [disabled, setDisabled] = useState("");
     const [newArticle, setNewArticle] = useState("");
     const {article_id} = useParams()
     const user = useContext(UserContext)
+    const navigate = useNavigate()
 
     function changeTopic(e) {
         if (e.target.value === "Select Topic") return
         setTopic(e.target.value)
-        console.log(e.target.value)
     }
 
     // useEffect(() => {
@@ -35,10 +37,24 @@ export default function ArticleSubmit() {
     useTopics(setTopics,setIsLoading);
 
     function submitArticle() {
+        let lockout = false
+        if (title === "Enter title here" || (!title)) {
+            setErrorTitle("Please enter a title")
+            lockout = true
+        } else setErrorTitle(null)
+        if (topic === "" || (!topic)) {
+            setErrorTopic("Please select a topic")
+            lockout = true
+        } else setErrorTopic(null)
         if (body === "Enter comment here" || (!body)) {
-            setError("Please enter a comment")
-        } else {
-            setError(null)
+            setErrorBody("Please enter an article")
+            lockout = true
+        } else if (body.length <= 50) {
+            setErrorBody("Articles must be 50 characters or longer")
+            lockout = true
+        } else setErrorBody(null)
+        if (lockout) return
+        else {
             setIsSending("Sending.....")
             setDisabled(true)
             sendApi('post', `articles`, {
@@ -53,21 +69,29 @@ export default function ArticleSubmit() {
             })
         }
     }
+
+    const submitTitleClass = errorTitle ? "submitarticle__titlebox--error" : "submitarticle__titlebox"
+    const submitTopicClass = errorTopic ? "submitarticle__topicbox--error" : "submitarticle__topicbox"
+    const submitBodyClass = errorBody ? "submitarticle__bodybox--error" : "submitarticle__bodybox"
+
+    if (user.user === null) navigate("/")
     if (isSending === "Done!") return <ArticleSuccess article={newArticle} />
     return (
-      <div className='ArticlePage'>
-          <h4>Submit an Article</h4>
-          <p className='lhs'>
+      <div className='submitarticle'>
+          <h4 className='submitarticle__title'>Submit an Article</h4>
+          <p className='submitarticle__grid'>
               Title:<br />
-              <input className='ArticleInput' 
-              defaultValue={'Enter comment here'}
+              <textarea className={submitTitleClass}
+              defaultValue={'Enter title here'}
               onBlur={(event)=>{setTitle(event.target.value)}}>
-              </input><br />
-              {error}
+              </textarea>
+              <br />
+              {errorTitle}
           </p>
-          <p className='lhs'>
+          <p className='submitarticle__grid'>
               Topic:<br />
-              <select id='TopicSelect' onChange={changeTopic}>
+              <select id='TopicSelect' onChange={changeTopic}
+              className={submitTopicClass}>
                 <option key={'DefaultTopicOption'}>Select Topic</option>
                 {topics.map(topic=>{
                     return (
@@ -77,19 +101,26 @@ export default function ArticleSubmit() {
                     )
                 })}
               </select>
+              <br />
+              {errorTopic}
           </p>
-          <p className='lhs'>
+          <p className='submitarticle__grid'>
               Body:<br />
-              <textarea className='ArticleBodyInput' 
-              defaultValue={'Enter comment here'}
+              <textarea className={submitBodyClass}
+              defaultValue={'Enter text here'}
               onBlur={(event)=>{setBody(event.target.value)}}>
               </textarea>
+              <br />
+              {errorBody}
           </p>
-          {error}<br />
-          <button onClick={()=>{submitArticle()}}
+          <p className='submitarticle__grid--center '>
+              <button onClick={()=>{submitArticle()}}
                   disabled={disabled}
+                  className='submitarticle__button'
                   >Submit</button>
-          <p>{isSending}</p>
+                  <br />
+            {isSending}
+          </p>
       </div>
     )
 }

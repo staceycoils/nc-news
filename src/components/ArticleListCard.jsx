@@ -12,19 +12,21 @@ export default function ArticleListCard(props) {
         comment_count    
     } = props.card
   return (
-    <div className='ArticleList'>
-        <h4>
+    <div>
+        <h4 className='articles__listtitle'>
           <Link to={`/articles/${article_id}`} >
           {title}
           </Link>
         </h4>
-        <span className='ArticleListGrid'>
-            <p className='lhs'>
-            Submitted By {author}<br />
+        <span className=''>
+            <p className=''>
             Topic: <Link to={`/articles?topic=${topic}`}>{topic}</Link><br />
-            Submitted {created_at.slice(0,10)}<br />
+            Submitted {created_at.slice(0,10)} by&nbsp;
+            <Link to={`/user/${author}`} >
+            {author}
+            </Link><br />
             </p>
-            <p className='rhs'>
+            <p className=''>
             Votes: {votes}<br />
             Comments: {comment_count}<br />
             </p>

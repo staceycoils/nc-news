@@ -6,16 +6,19 @@ export default function HiddenComment(props) {
   
   if (comment.hide) {
   return (
-      <p className="ArticleBody">
+      <p className="articlecomments__comment--body">
         <b>This comment has been hidden due to low score. </b> 
-        <button onClick={()=>{setReveal(`${comment.body}`)}}>Show</button><br/>
+        <br />
+        <button onClick={()=>{setReveal(`${comment.body}`)}}
+        className="buttonhidden"
+        >Show</button><br/>
         {reveal}
       </p>
   )
   
   } else {
     return (
-      <p className="ArticleBody">
+      <p className="articlecomments__comment--body">
         {comment.body}
       </p>
     )

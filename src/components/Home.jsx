@@ -39,15 +39,32 @@ export default function Home() {
   ]
 
   return (
-    <div>
-      <h2>Hottest Articles</h2>
+    <div className='homebody'>
+      <h2 className='homearticles__toptitle'>Current Top Articles</h2>
+      <div className='homearticles__top'>
           <HomeArticle article={hotArticles[0]} />
+      </div>
+      <div className='homearticles'>
           <HomeArticle article={hotArticles[1]} />
+      </div>
+      <div className='homearticles'>
           <HomeArticle article={hotArticles[2]} />
-      <h2>Latest Article</h2>
-          <HomeArticle article={latest} />
-      <h2>Latest Comment</h2>
-          <HomeComment comment={comment[0]} />
+      </div>
+      <div className='homearticles__seperator'></div>
+      <div className='homearticles__lower'>
+        <div>
+          <h2 className='homearticles__title'>Latest Article</h2>
+          <div className='homearticles'>
+              <HomeArticle article={latest} />
+          </div>
+        </div>
+        <div>
+          <h2 className='homearticles__title'>Latest Comment</h2>
+          <div className='homearticles'>
+              <HomeComment comment={comment[0]} />
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

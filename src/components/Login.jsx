@@ -36,17 +36,20 @@ export default function Login() {
     }
   }
 
+  const inputClass = error ? 'log__loginbox--error' : 'log__loginbox'
+
   return (
-    <div className='ArticlePage'>
-        <h3>User Login</h3>
-        <h5>Please enter your username</h5>
-        <p>
+    <div className='log'>
+        <h3 className='log__row'>User Login</h3>
+        <h5 className='log__row'>Please enter your username</h5>
+        <p className='log__row'>
             {error}
         </p>
-        <p>
+        <p className='log__row'>
             <input defaultValue={"Username"}
+            className={inputClass}
             onChange={(e)=>setUsername(e.target.value)}></input><br />
-            <button onClick={(e)=>{loginUser(e)}}>
+            <button className='buttonlogin' onClick={(e)=>{loginUser(e)}}>
                 LOGIN
             </button>
         </p>

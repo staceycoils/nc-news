@@ -37,11 +37,11 @@ export default function UserArticles(props) {
 
     const userArticles = 
         articles.length ?
-        <ul>
+        <ul className='userbox__list'>
         {articles.map((article) => {
           return (
             <li key={`UserArt${article.article_id}`}
-            className='ArticleBody'>
+            className='userbox__listitem'>
               <Link to={`/articles/${article.article_id}`} >
               {article.title}<br />
               </Link> 
@@ -68,9 +68,9 @@ export default function UserArticles(props) {
         )
     } else
   return (
-    <span>
+    <div className='userbox__articles'>
         <h3>{user.username}'s Articles</h3>
         {userArticles}
-    </span>
+    </div>
   )
 }

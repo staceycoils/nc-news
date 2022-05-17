@@ -50,33 +50,40 @@ export default function ArticleCard(props) {
     
     if (isLoading) return <p>Loading.....</p>
     return (
-        <div className='ArticlePage'>
-            <h3>{article.title}</h3>
-            <span className='ArticleListGrid'>
-                <p className='lhs'>By {article.author} <br />On {article.created_at.slice(0,10)}</p>
-                <p className='rhs'>In <Link to={`/articles?topic=${article.topic}`}>{article.topic}</Link>
+        <div className="articlebody">
+            <h3 className="articlebody__title">{article.title}</h3>
+            <span className="articlebody__details">
+                <p className="articlebody__details--lhs">
+                    By&nbsp;
+                    <Link to={`/user/${article.author}`} >{article.author} </Link><br />
+                    On {article.created_at.slice(0,10)}</p>
+                <p className="articlebody__details--rhs">
+                    In <Link to={`/articles?topic=${article.topic}`}>{article.topic}</Link>
                 <br />{user.user === article.author ? 
                     <DeleteButton 
                     article={article.article_id} /> : 
                     null}
                 </p>
             </span>
-                <p className='ArticleBody'>{article.body}</p>
-            <span className='ArticleListGrid'>
-                <p className='lhs'>
+                <p className='articlebody__textbody'>{article.body}</p>
+            <span className="articlebody__details">
+                <p className="articlebody__details--lhs">
                     Votes: {article.votes}
+                    </p>
+                <p className="articlebody__details--rhs">Comments({article.comment_count})</p>
+                <p className="articlebody__details--votes">    
                     <button 
                         onClick={(event) => giveVote(1)}
-                        className='voteButton'
+                        className='buttonvote'
                         disabled={isVoteLoading}
-                        >^</button>
+                        alte
+                        >&uarr;</button>
                     <button 
                         onClick={(event) => giveVote(-1)}
-                        className='voteButton'
+                        className='buttonvote'
                         disabled={isVoteLoading}
-                        >v</button>
+                        >&darr;</button>
                 </p>
-                <p className='rhs'>Comments({article.comment_count})</p>
             </span>
         </div>
   )

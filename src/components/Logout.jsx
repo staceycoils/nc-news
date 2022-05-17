@@ -11,7 +11,8 @@ export default function Logout() {
   }
 
   return (
-    <button onClick={(e)=>{logoutUser(e)}}>
+    <button onClick={(e)=>{logoutUser(e)}}
+    className='header__logout'>
         LOGOUT
     </button>
   )

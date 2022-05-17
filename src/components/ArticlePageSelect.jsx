@@ -15,22 +15,26 @@ export default function ArticlePageSelect(props) {
     let nextPage = (currentPage <= pages.length-1 ? currentPage + 1 : currentPage )
 
   return (
-    <div>
+    <div className="articles__options--pageselect">
         <Link key={`linkPrevPage`} to={`/articles${pageHome}${prevPage}`}>
-        <button key={`selectPrevPage`}>Prev</button>
+        <button key={`selectPrevPage`}
+        className="buttonpage">Prev</button>
         </Link>
             {pages.map((page)=>{
                 if (page === currentPage) return (
-                        <button key={`selectPage${page}`} disabled>{page}</button>
+                        <button key={`selectPage${page}`} disabled
+                        className="buttonpage">{page}</button>
                 ) 
                 else return (
                     <Link key={`linkPage${page}`} to={`/articles${pageHome}${page}`}>
-                        <button key={`selectPage${page}`}>{page}</button>
+                        <button key={`selectPage${page}`}
+                        className="buttonpage">{page}</button>
                     </Link>
                 )
             })}
         <Link key={`linkNextPage`} to={`/articles${pageHome}${nextPage}`}>
-        <button key={`selectNextPage`}>Next</button>
+        <button key={`selectNextPage`}
+        className="buttonpage">Next</button>
         </Link>
     </div>
   )

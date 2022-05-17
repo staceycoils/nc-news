@@ -40,7 +40,8 @@ export default function DeleteButton(props) {
 
 
   return (
-      <button onClick={()=>{deleteAction()}}>
+      <button onClick={()=>{deleteAction()}}
+      className='buttondelete--comment'>
           DELETE
       </button>
   )
