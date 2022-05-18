@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { UserContext } from '../contexts/UserContext'
 
 export default function Logout() {
-  const { user, setUser } = useContext(UserContext)
+  const { setUser } = useContext(UserContext)
 
   function logoutUser(e) {
     setUser(null)

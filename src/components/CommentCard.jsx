@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 import { fetchApi } from '../api';
-import { Link, useParams, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext';
 import CommentPageSelect from './CommentPageSelect'
 import CommentList from './CommentList';
@@ -28,7 +28,7 @@ export default function CommentCard(props) {
                 setComments(apiComments.comments);
                 setIsLoading(false)
         });
-    }, [page, refresh]);
+    }, [articleRequest, page, refresh]);
 
     if (isLoading) return <p>Loading.....</p>
     if (!comments) return (

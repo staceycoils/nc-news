@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { sendApi, fetchApi } from "../api";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import DeleteButton from "./DeleteButton";
 
@@ -8,7 +8,6 @@ export default function ArticleCard(props) {
     const { articleRequest,setError } = props
     const [article, setArticle] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [isVoteLoading, setIsVoteLoading] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const user = useContext(UserContext)
 
@@ -27,23 +26,23 @@ export default function ArticleCard(props) {
             .catch((err)=>{
                 setError({err})
             })
-    }, []);
+    });
 
     function giveVote(num) {
         article.votes += num
         const voteChange = { incVotes: num };
-        setIsVoteLoading(true)
+        setDisabled(true)
         sendApi('patch',`articles/${articleRequest}`, voteChange)
             .then(()=>{
                 return fetchApi(`articles/${articleRequest}`)
             })
             .then((newApiArticle)=>{
                 setArticle(newApiArticle.article);
-                setIsVoteLoading(false)
+                setDisabled(false)
             })
             .catch((err)=>{
                 article.votes -= num
-                setIsVoteLoading(false)
+                setDisabled(false)
                 alert(`${err}, please try again`)
             })
     }
@@ -75,13 +74,13 @@ export default function ArticleCard(props) {
                     <button 
                         onClick={(event) => giveVote(1)}
                         className='buttonvote'
-                        disabled={isVoteLoading}
+                        disabled={disabled}
                         alte
                         >&uarr;</button>
                     <button 
                         onClick={(event) => giveVote(-1)}
                         className='buttonvote'
-                        disabled={isVoteLoading}
+                        disabled={disabled}
                         >&darr;</button>
                 </p>
             </span>

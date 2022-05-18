@@ -1,7 +1,5 @@
-import { Link } from 'react-router-dom'
 import { sendApi } from '../api'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import HomeArticle from './HomeArticle'
 import HomeComment from './HomeComment'
 

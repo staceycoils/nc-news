@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { fetchApi, sendApi } from '../api';
+import { sendApi } from '../api';
 import { TopicSuccess } from './SubmitSuccess';
 
 export default function TopicSubmit() {

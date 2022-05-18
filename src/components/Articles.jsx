@@ -20,8 +20,7 @@ export default function Articles(props) {
     const [disabled, setDisabled] = useState(false);
     const navigate = useNavigate();
     const slug = useLocation();
-    const user = useContext(UserContext)
-    const [limiter, setLimiter] = useState(0);
+    const user = useContext(UserContext);
 
     useEffect(()=>{
         if (!user.user) setDisabled(true)

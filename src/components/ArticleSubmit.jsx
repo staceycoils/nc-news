@@ -1,9 +1,7 @@
-import { useState, useEffect, useContext } from 'react';
-import { fetchApi, sendApi } from '../api';
-import { useParams, useNavigate } from 'react-router-dom';
-import { CommentSuccess } from './SubmitSuccess';
+import { useState, useContext } from 'react';
+import { sendApi } from '../api';
+import { useNavigate } from 'react-router-dom';
 import { useTopics } from './Topics';
-import TopicSelectBox from './TopicSelectBox';
 import { UserContext } from '../contexts/UserContext';
 import { ArticleSuccess } from './SubmitSuccess';
 
@@ -16,10 +14,9 @@ export default function ArticleSubmit() {
     const [errorTopic, setErrorTopic] = useState(null);
     const [errorBody, setErrorBody] = useState(null);
     const [isSending, setIsSending] = useState("");
-    const [isLoading, setIsLoading] = useState("");
+    const [setIsLoading] = useState("");
     const [disabled, setDisabled] = useState("");
     const [newArticle, setNewArticle] = useState("");
-    const {article_id} = useParams()
     const user = useContext(UserContext)
     const navigate = useNavigate()
 
@@ -27,12 +24,6 @@ export default function ArticleSubmit() {
         if (e.target.value === "Select Topic") return
         setTopic(e.target.value)
     }
-
-    // useEffect(() => {
-    //     fetchApi(`articles/${article_id}`)
-    //         .then((apiArticle) => {
-    //   });
-    // }, []);
 
     useTopics(setTopics,setIsLoading);
 

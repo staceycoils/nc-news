@@ -15,7 +15,7 @@ export default function Login() {
 
   useEffect(() => {
     if (user !== null) navigate("/")
-  }, [])
+  }, [navigate, user])
   
 
   useEffect(()=>{

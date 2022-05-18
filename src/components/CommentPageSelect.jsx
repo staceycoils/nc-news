@@ -1,7 +1,5 @@
 import React from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import { sendApi } from '../api'
 
 export default function CommentPageSelect(props) {
@@ -13,7 +11,7 @@ export default function CommentPageSelect(props) {
             .then((apiArticle)=>{
                 setTotal(apiArticle.article.comment_count)
             })
-    }, [])
+    }, [articleRequest])
 
     const pages = Math.floor((total/10)+1)
     const pageArray = []

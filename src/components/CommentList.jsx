@@ -1,5 +1,5 @@
-import { useState, useEffect, useContext } from 'react'
-import { Link, useParams, useLocation } from 'react-router-dom';
+import { useState, useContext } from 'react'
+import { useParams } from 'react-router-dom';
 import HiddenComment from './HiddenComment';
 import DeleteButton from './DeleteButton';
 import { UserContext } from '../contexts/UserContext';

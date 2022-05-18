@@ -5,7 +5,6 @@ import CommentCard from './CommentCard';
 import ErrorPage from './ErrorPage';
 
 export default function Article() {
-    const [commentTotal, setCommentTotal] = useState(0)
     const articleRequest = useParams().article_id;
     const [error, setError] = useState(null)
     const navigate = useNavigate();

@@ -10,7 +10,7 @@ export function useTopics(setTopics,setIsLoading) {
                 setTopics(apiTopics.topics);
                 setIsLoading(false)
       });
-    }, []);
+    }, [setIsLoading, setTopics]);
 }
 
 export function Topics() {
