@@ -3,7 +3,6 @@ import { fetchApi, sendApi } from '../api';
 import { useParams, useNavigate } from 'react-router-dom';
 import { CommentSuccess } from './SubmitSuccess';
 import { UserContext } from '../contexts/UserContext';
-import { useMatch } from 'react-router-dom';
 
 export default function CommentSubmit() {
     const [body, setBody] = useState("");
@@ -21,7 +20,7 @@ export default function CommentSubmit() {
             .then((apiArticle) => {
                 setTitle(apiArticle.article.title);
       });
-    }, []);
+    }, [article_id]);
 
     function submitComment() {
         if (body === "Enter comment here" || (!body)) {

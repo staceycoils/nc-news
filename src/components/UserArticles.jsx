@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import { sendApi } from '../api'
-import { useContext } from 'react'
 import { useState } from 'react'
 
 export default function UserArticles(props) {
@@ -10,7 +9,6 @@ export default function UserArticles(props) {
     const [articles, setArticles] = useState([])
     const [articlesLoading, setArticlesLoading] = useState(true)
     const [articleList, setArticleList] = useState([])
-    const [listLoading, setListLoading] = useState(true)
 
     useEffect(() => {
       sendApi('get', `users/${userName}/articles`)    
@@ -18,13 +16,13 @@ export default function UserArticles(props) {
             setArticles(apiUserArticles.articles)
             setArticlesLoading(false)
         })
-    }, [])    
+    }, [userName])    
 
     useEffect(() => {
         sendApi('get', `articles?limit=none`)    
           .then((apiArticles)=>{
               setArticleList(apiArticles.articles)
-              setListLoading(false)
+              setArticlesLoading(false)
           })
       }, [])
 

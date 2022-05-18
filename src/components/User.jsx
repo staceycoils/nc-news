@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { sendApi } from '../api'
 import UserArticles from './UserArticles'
 import UserComments from './UserComments'
@@ -22,7 +22,7 @@ export default function User() {
           .catch((err)=>{
             setError({err})
           })
-      }, [])
+      }, [userName])
 
     if (error) return <ErrorPage error={error} type="user" />  
     if (userLoading) return <p>Loading.....</p>
@@ -33,7 +33,7 @@ export default function User() {
         <br />
         <span className='userbox__user'>
           <img src={user.avatar_url} className='userbox__avatar'
-          alt={`An image submitted for the avatar of user ${user.username}`}
+          alt={`The avatar for user ${user.username}`}
           />
           <p className='userbox__userinfo'>
             <b>Username:</b><br />

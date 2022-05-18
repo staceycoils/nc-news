@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
-import { Link, useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import HiddenComment from './HiddenComment';
 import DeleteButton from './DeleteButton';
 import { UserContext } from '../contexts/UserContext';
@@ -10,6 +10,11 @@ export default function CommentList(props) {
     const [isVoteLoading, setIsVoteLoading] = useState(false);
     const article = useParams().article_id
     const user = useContext(UserContext)
+
+    useEffect(()=>{
+        if (!user.user) setIsVoteLoading(true)
+        else setIsVoteLoading(false)
+    }, [user.user])
 
     function giveVote(num) {
         comment.votes += num

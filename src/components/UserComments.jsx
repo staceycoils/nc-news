@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import { sendApi } from '../api'
-import { useContext } from 'react'
 import { useState } from 'react'
 
 export default function UserComments(props) {
@@ -11,9 +10,6 @@ export default function UserComments(props) {
     const [commentsLoading, setCommentsLoading] = useState(true)
     const [articleList, setArticleList] = useState([])
     const [listLoading, setListLoading] = useState(true)
-    let articleKey = {}
-
-
 
     useEffect(() => {
         sendApi('get', `users/${userName}/comments`)    
@@ -21,7 +17,7 @@ export default function UserComments(props) {
               setComments(apiUserComments.comments)
               setCommentsLoading(false)
           })
-      }, [])
+      }, [userName])
 
     useEffect(() => {
         sendApi('get', `articles?limit=none`)    
